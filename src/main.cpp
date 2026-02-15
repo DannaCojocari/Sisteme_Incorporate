@@ -1,18 +1,18 @@
 #include <Arduino.h>
 
-#include "lab_1/lab_1_app.h"
+#include "lab_1_1/lab_1_1_app.h"
 
-#define APP_NAME LAB_1
+#define APP_NAME LAB_1_1
 
 void setup() {
-    #if APP_NAME == LAB_1
-        lab1Setup();
+    #if APP_NAME == LAB_1_1
+        lab1_1Setup();
     #endif
 }
 
 void loop() {
-    #if APP_NAME == LAB_1
-        lab1Loop();
+    #if APP_NAME == LAB_1_1
+        lab1_1Loop();
     #endif
 }
 

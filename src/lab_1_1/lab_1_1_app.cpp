@@ -1,4 +1,4 @@
-#include "lab_1_app.h"
+#include "lab_1_1_app.h"
 
 // Include the serial driver
 #include "srv_serial_stdio/srv_serial_stdio.h"
@@ -6,7 +6,7 @@
 
 #include "dd_led/dd_led.h"
 
-void lab1Setup() {
+void lab1_1Setup() {
     // Initialize the serial driver
     srvSerialSetup();
 
@@ -16,7 +16,7 @@ void lab1Setup() {
 }
 
 char cmd[32];
-void lab1Loop() {
+void lab1_1Loop() {
     printf("Enter command: led on / led off\n");
     fgets(cmd, sizeof(cmd), stdin);
     // Remove newline character from the end of the command
