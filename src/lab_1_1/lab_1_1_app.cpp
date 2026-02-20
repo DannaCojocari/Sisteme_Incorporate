@@ -26,11 +26,11 @@ void lab1_1Loop() {
 
     // Process the command
     if (strcmp(cmd, "led on") == 0) {
-        ddLedTurnOn();
+        ddLedTurnOn(LED_GREEN);
         printf("LED on\n");
 
     } else if (strcmp(cmd, "led off") == 0) {
-        ddLedTurnOff();
+        ddLedTurnOff(LED_GREEN);
         printf("LED off\n");
     } else {
         printf("Unknown command\n");

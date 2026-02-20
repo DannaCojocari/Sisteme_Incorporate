@@ -3,15 +3,19 @@
 
 #include <Arduino.h>
 
-// ESP32 built-in LED is on GPIO2
-#ifndef LED_BUILTIN
-#define LED_BUILTIN 13
-#endif
+// LED array configuration
+#define LED_COUNT 2
 
-#define LED_PIN LED_BUILTIN
+// LED indices for easy reference
+#define LED_GREEN 0
+#define LED_RED 1
+
+// Default pin assignments (can be modified based on hardware)
+#define LED_GREEN_PIN 10
+#define LED_RED_PIN 11
 
 void ddLedSetup();
-void ddLedTurnOn();
-void ddLedTurnOff();
+void ddLedTurnOn(int ledIndex);
+void ddLedTurnOff(int ledIndex);
 
 #endif //DD_LED_H
