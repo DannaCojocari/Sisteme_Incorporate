@@ -3,7 +3,8 @@
 // LED pins array
 static const int ledPins[LED_COUNT] = {
     LED_GREEN_PIN,
-    LED_RED_PIN
+    LED_RED_PIN,
+    LED_YELLOW_PIN
 };
 
 void ddLedSetup() {
