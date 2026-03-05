@@ -4,7 +4,7 @@
 #include "Arduino.h"
 
 // Button pin definition
-#define BUTTON_PIN 7
+#define BUTTON_PIN 2
 
 // Function declarations
 void ddButtonSetup();
