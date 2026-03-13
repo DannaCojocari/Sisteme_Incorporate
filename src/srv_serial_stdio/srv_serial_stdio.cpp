@@ -26,8 +26,10 @@ int srvSerialGetChar(FILE *f) {
 }
 
 
-// Define the function to put a character to the serial driver
+// Define the function to put a character to the serial driver.
+// Translates '\n' -> '\r\n': without the carriage return (\r), each new line
+// starts at the column where the previous one ended, causing a staircase effect.
 int srvSerialPutChar(char c, FILE *f) {
-    // Write the character to the serial driver
+    if (c == '\n') Serial.write('\r');
     return Serial.write(c);
 }
