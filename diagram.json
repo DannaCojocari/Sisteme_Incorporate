@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "Lab 3.1 - Dual Sensor Monitor",
+  "author": "Lab 3.2 - Dual Sensor Monitor",
   "editor": "wokwi",
   "parts": [
     { "type": "wokwi-arduino-mega", "id": "mega", "top": 250, "left": 0, "attrs": {} },
@@ -9,7 +9,7 @@
       "id": "pot1",
       "top": 50,
       "left": 170,
-      "attrs": { "value": "0.05", "label": "LM35 (A0) — 5%=25C 5.3%=26C" }
+      "attrs": { "value": "0.371", "label": "NTC sim (A0)" }
     },
     {
       "type": "wokwi-dht22",
@@ -30,7 +30,7 @@
       "id": "led_r",
       "top": 34.8,
       "left": 560.6,
-      "attrs": { "color": "red", "label": "Analog alert (pin 11)" }
+      "attrs": { "color": "red", "label": "Analog alert" }
     },
     {
       "type": "wokwi-resistor",
@@ -45,7 +45,7 @@
       "id": "led_g",
       "top": 70,
       "left": 630,
-      "attrs": { "color": "green", "label": "Digital alert (pin 12)" }
+      "attrs": { "color": "green", "label": "Digital alert" }
     },
     {
       "type": "wokwi-resistor",
@@ -57,24 +57,26 @@
     }
   ],
   "connections": [
-    [ "pot1:VCC", "mega:5V", "red", [] ],
-    [ "pot1:GND", "mega:GND.1", "black", [] ],
-    [ "pot1:SIG", "mega:A0", "green", [] ],
-    [ "dht1:VCC", "mega:5V", "red", [] ],
-    [ "dht1:GND", "mega:GND.2", "black", [] ],
-    [ "dht1:SDA", "mega:18", "yellow", [] ],
-    [ "lcd1:VCC", "mega:5V", "red", [] ],
-    [ "lcd1:GND", "mega:GND.3", "black", [] ],
-    [ "lcd1:SDA", "mega:20", "blue", [] ],
-    [ "lcd1:SCL", "mega:21", "purple", [] ],
-    [ "led_r:A", "r1:8", "red", [] ],
-    [ "r1:2", "mega:11", "red", [] ],
-    [ "led_r:K", "mega:GND.4", "black", [] ],
-    [ "led_g:A", "r2:7", "green", [] ],
-    [ "r2:2", "mega:12", "green", [] ],
-    [ "led_g:K", "mega:GND.5", "black", [] ],
-    [ "led_r:C", "mega:GND.1", "green", [ "v0" ] ],
-    [ "led_g:C", "mega:GND.1", "green", [ "v0" ] ]
+    [ "pot1:VCC", "mega:5V",    "red",    [] ],
+    [ "pot1:GND", "mega:GND.1", "black",  [] ],
+    [ "pot1:SIG", "mega:A0",    "green",  [] ],
+
+    [ "dht1:VCC", "mega:5V",    "red",    [] ],
+    [ "dht1:GND", "mega:GND.2", "black",  [] ],
+    [ "dht1:SDA", "mega:18",    "yellow", [] ],
+
+    [ "lcd1:VCC", "mega:5V",    "red",    [] ],
+    [ "lcd1:GND", "mega:GND.3", "black",  [] ],
+    [ "lcd1:SDA", "mega:20",    "blue",   [] ],
+    [ "lcd1:SCL", "mega:21",    "purple", [] ],
+
+    [ "mega:8",   "r1:1",       "red",    [] ],
+    [ "r1:2",     "led_r:A",    "red",    [] ],
+    [ "led_r:C",  "mega:GND.1", "black",  [] ],
+
+    [ "mega:7",   "r2:1",       "green",  [] ],
+    [ "r2:2",     "led_g:A",    "green",  [] ],
+    [ "led_g:C",  "mega:GND.1", "black",  [] ]
   ],
   "dependencies": {}
 }

@@ -14,7 +14,7 @@
 // Default pin assignments (can be modified based on hardware)
 #define LED_GREEN_PIN 7
 #define LED_RED_PIN 8
-#define LED_YELLOW_PIN 10
+#define LED_YELLOW_PIN 6
 
 void ddLedSetup();
 void ddLedTurnOn(int ledIndex);
