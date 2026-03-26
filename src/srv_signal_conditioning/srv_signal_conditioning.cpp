@@ -18,7 +18,7 @@ conditioning_result_t srvSignalConditioningApply(median_filter_t *filter, float 
 
     // 1. Saturation
     if (newValue > 100.0f) newValue = 100.0f;
-    if (newValue < -20.0f) newValue = -20.0f;
+    if (newValue < 0.0f) newValue = 0.0f;
     result.saturated = newValue;
 
     // 2. Add to circular buffer

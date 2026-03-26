@@ -12,8 +12,8 @@
 #define LED_YELLOW 2
 
 // Default pin assignments (can be modified based on hardware)
-#define LED_GREEN_PIN 7
-#define LED_RED_PIN 8
+#define LED_GREEN_PIN 8
+#define LED_RED_PIN 7
 #define LED_YELLOW_PIN 6
 
 void ddLedSetup();

@@ -1,82 +1,47 @@
 {
   "version": 1,
-  "author": "Lab 3.2 - Dual Sensor Monitor",
+  "author": "Lab 4.2 - Analog Actuator Control (Servo)",
   "editor": "wokwi",
   "parts": [
-    { "type": "wokwi-arduino-mega", "id": "mega", "top": 250, "left": 0, "attrs": {} },
-    {
-      "type": "wokwi-potentiometer",
-      "id": "pot1",
-      "top": 50,
-      "left": 170,
-      "attrs": { "value": "0.371", "label": "NTC sim (A0)" }
-    },
-    {
-      "type": "wokwi-dht22",
-      "id": "dht1",
-      "top": 29.1,
-      "left": 407.4,
-      "attrs": { "temperature": "25.0", "humidity": "60" }
-    },
+    { "type": "wokwi-arduino-mega", "id": "mega", "top": 298.2, "left": -3.6, "attrs": {} },
     {
       "type": "wokwi-lcd1602",
       "id": "lcd1",
-      "top": 50,
-      "left": -260,
+      "top": 0,
+      "left": -280,
       "attrs": { "pins": "i2c", "i2c-address": "0x27" }
     },
     {
-      "type": "wokwi-led",
-      "id": "led_r",
-      "top": 34.8,
-      "left": 560.6,
-      "attrs": { "color": "red", "label": "Analog alert" }
+      "type": "wokwi-membrane-keypad",
+      "id": "keypad1",
+      "top": -174.8,
+      "left": 360.8,
+      "attrs": { "columns": "4" }
     },
     {
-      "type": "wokwi-resistor",
-      "id": "r1",
-      "top": 110.4,
-      "left": 556.25,
-      "rotate": 90,
-      "attrs": { "value": "220" }
-    },
-    {
-      "type": "wokwi-led",
-      "id": "led_g",
-      "top": 70,
-      "left": 630,
-      "attrs": { "color": "green", "label": "Digital alert" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r2",
-      "top": 130,
-      "left": 626,
-      "rotate": 90,
-      "attrs": { "value": "220" }
+      "type": "wokwi-servo",
+      "id": "servo1",
+      "top": -50,
+      "left": 115.2,
+      "attrs": { "label": "Servo" }
     }
   ],
   "connections": [
-    [ "pot1:VCC", "mega:5V",    "red",    [] ],
-    [ "pot1:GND", "mega:GND.1", "black",  [] ],
-    [ "pot1:SIG", "mega:A0",    "green",  [] ],
-
-    [ "dht1:VCC", "mega:5V",    "red",    [] ],
-    [ "dht1:GND", "mega:GND.2", "black",  [] ],
-    [ "dht1:SDA", "mega:18",    "yellow", [] ],
-
-    [ "lcd1:VCC", "mega:5V",    "red",    [] ],
-    [ "lcd1:GND", "mega:GND.3", "black",  [] ],
-    [ "lcd1:SDA", "mega:20",    "blue",   [] ],
-    [ "lcd1:SCL", "mega:21",    "purple", [] ],
-
-    [ "mega:8",   "r1:1",       "red",    [] ],
-    [ "r1:2",     "led_r:A",    "red",    [] ],
-    [ "led_r:C",  "mega:GND.1", "black",  [] ],
-
-    [ "mega:7",   "r2:1",       "green",  [] ],
-    [ "r2:2",     "led_g:A",    "green",  [] ],
-    [ "led_g:C",  "mega:GND.1", "black",  [] ]
+    [ "lcd1:VCC", "mega:5V", "red", [ "h-40", "v230", "h460" ] ],
+    [ "lcd1:GND", "mega:GND.1", "black", [ "h-50", "v250", "h450" ] ],
+    [ "lcd1:SDA", "mega:20", "blue", [ "h-30", "v190", "h660" ] ],
+    [ "lcd1:SCL", "mega:21", "purple", [ "h-20", "v170", "h650" ] ],
+    [ "keypad1:R1", "mega:2", "green", [ "v9.6", "h-40.4" ] ],
+    [ "keypad1:R2", "mega:3", "green", [ "v19.2", "h-59.9" ] ],
+    [ "keypad1:R3", "mega:4", "green", [ "v28.8", "h-78.9" ] ],
+    [ "keypad1:R4", "mega:5", "green", [ "v38.4", "h-97.9" ] ],
+    [ "keypad1:C1", "mega:22", "yellow", [ "v19.2", "h-0.1", "v124.8", "h-138.2" ] ],
+    [ "keypad1:C2", "mega:23", "yellow", [ "v153.6", "h-137.8" ] ],
+    [ "keypad1:C3", "mega:24", "yellow", [ "v9.6", "h-0.15", "v163.2", "h-157.4" ] ],
+    [ "keypad1:C4", "mega:25", "yellow", [ "v9.6", "h-0.3", "v154.45" ] ],
+    [ "servo1:V+", "mega:5V", "red", [ "h-28.8", "v451.3", "h74.5" ] ],
+    [ "servo1:GND", "mega:GND.2", "black", [ "h-38.4", "v499.2", "h97.45" ] ],
+    [ "servo1:PWM", "mega:6", "orange", [ "h-9.6", "v240.2", "h42.4" ] ]
   ],
   "dependencies": {}
 }

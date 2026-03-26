@@ -35,8 +35,8 @@ void l32_taskSignalCond(void *pvParameters) {
             }
         }
 
-        // ── Digital: fără filtrare (senzor digital curat) ────────────────────
-        // conditioned_temperature = raw (nicio modificare)
+        // ── Digital: without filter ────────────────────
+        // conditioned_temperature = raw 
 
         vTaskDelayUntil(&xLastWakeTime, ACQ_ANALOG_PERIOD);
     }
