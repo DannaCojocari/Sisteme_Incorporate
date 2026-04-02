@@ -18,10 +18,12 @@ void srvSerialSetup() {
 }
 
 
-// Define the function to get a character from the serial driver
+// Define the function to get a character from the serial driver.
+// Non-blocking: returneaza EOF daca nu exista date disponibile,
+// in loc sa astepte. Aceasta permite FreeRTOS sa continue schedulingul
+// celorlalte taskuri in loc sa fie blocat pe stdin.
 int srvSerialGetChar(FILE *f) {
-    // Wait for data to be available
-    while (!Serial.available()); 
+    if (!Serial.available()) return EOF;
     return Serial.read();
 }
 

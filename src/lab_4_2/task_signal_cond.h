@@ -2,16 +2,9 @@
 #define LAB_4_2_TASK_SIGNAL_COND_H
 
 // Task 2 – Signal Conditioning (50 ms)
-// Applies the full preprocessing pipeline to the raw keypad command:
-//
-//   raw_cmd
-//     └─ saturation  (clamp to 0–100 %)
-//     └─ median filter (size 5, impulse noise rejection)
-//     └─ weighted moving average (smooth fluctuations)
-//     └─ conditioned  → written to g_l42_servo.conditioned
-//
-// Also runs the threshold / hysteresis channel (srv_threshold) to detect
-// overload (conditioned > ALERT_HIGH_PCT) and publishes the alert flag.
+// Pipeline aplicat pe raw_cmd:
+//   saturare [0–100%] → filtru median (n=5) → WMA (n=5) → threshold alert
+// Rezultatul (conditioned) e scris in g_l42_motor.conditioned.
 void l42_taskSignalCond(void *pvParameters);
 
 #endif // LAB_4_2_TASK_SIGNAL_COND_H

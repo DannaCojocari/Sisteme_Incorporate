@@ -1,47 +1,41 @@
 {
   "version": 1,
-  "author": "Lab 4.2 - Analog Actuator Control (Servo)",
+  "author": "Lab 4.2 - DC Motor Control (L298N simulat cu LED PWM)",
   "editor": "wokwi",
   "parts": [
-    { "type": "wokwi-arduino-mega", "id": "mega", "top": 298.2, "left": -3.6, "attrs": {} },
+    { "type": "wokwi-arduino-mega", "id": "mega", "top": 300, "left": 0, "attrs": {} },
     {
       "type": "wokwi-lcd1602",
       "id": "lcd1",
       "top": 0,
-      "left": -280,
+      "left": -290,
       "attrs": { "pins": "i2c", "i2c-address": "0x27" }
     },
     {
-      "type": "wokwi-membrane-keypad",
-      "id": "keypad1",
-      "top": -174.8,
-      "left": 360.8,
-      "attrs": { "columns": "4" }
+      "type": "wokwi-led",
+      "id": "led_pwm",
+      "top": 50,
+      "left": 350,
+      "attrs": { "color": "green", "label": "Motor speed (PWM)" }
     },
     {
-      "type": "wokwi-servo",
-      "id": "servo1",
-      "top": -50,
-      "left": 115.2,
-      "attrs": { "label": "Servo" }
+      "type": "wokwi-resistor",
+      "id": "r1",
+      "top": 145,
+      "left": 345,
+      "rotate": 90,
+      "attrs": { "value": "220" }
     }
   ],
   "connections": [
-    [ "lcd1:VCC", "mega:5V", "red", [ "h-40", "v230", "h460" ] ],
-    [ "lcd1:GND", "mega:GND.1", "black", [ "h-50", "v250", "h450" ] ],
-    [ "lcd1:SDA", "mega:20", "blue", [ "h-30", "v190", "h660" ] ],
-    [ "lcd1:SCL", "mega:21", "purple", [ "h-20", "v170", "h650" ] ],
-    [ "keypad1:R1", "mega:2", "green", [ "v9.6", "h-40.4" ] ],
-    [ "keypad1:R2", "mega:3", "green", [ "v19.2", "h-59.9" ] ],
-    [ "keypad1:R3", "mega:4", "green", [ "v28.8", "h-78.9" ] ],
-    [ "keypad1:R4", "mega:5", "green", [ "v38.4", "h-97.9" ] ],
-    [ "keypad1:C1", "mega:22", "yellow", [ "v19.2", "h-0.1", "v124.8", "h-138.2" ] ],
-    [ "keypad1:C2", "mega:23", "yellow", [ "v153.6", "h-137.8" ] ],
-    [ "keypad1:C3", "mega:24", "yellow", [ "v9.6", "h-0.15", "v163.2", "h-157.4" ] ],
-    [ "keypad1:C4", "mega:25", "yellow", [ "v9.6", "h-0.3", "v154.45" ] ],
-    [ "servo1:V+", "mega:5V", "red", [ "h-28.8", "v451.3", "h74.5" ] ],
-    [ "servo1:GND", "mega:GND.2", "black", [ "h-38.4", "v499.2", "h97.45" ] ],
-    [ "servo1:PWM", "mega:6", "orange", [ "h-9.6", "v240.2", "h42.4" ] ]
+    [ "lcd1:VCC", "mega:5V",    "red",    [ "h-40", "v240", "h460" ] ],
+    [ "lcd1:GND", "mega:GND.1", "black",  [ "h-50", "v260", "h450" ] ],
+    [ "lcd1:SDA", "mega:20",    "blue",   [ "h-30", "v180", "h660" ] ],
+    [ "lcd1:SCL", "mega:21",    "purple", [ "h-20", "v160", "h650" ] ],
+
+    [ "mega:9",     "r1:1",      "orange", [ "v-20", "h200" ] ],
+    [ "r1:2",       "led_pwm:A", "orange", [] ],
+    [ "led_pwm:C",  "mega:GND.2","black",  [ "h-10", "v340" ] ]
   ],
   "dependencies": {}
 }
