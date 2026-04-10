@@ -1,4 +1,7 @@
 [wokwi]
 version = 1
-firmware = ".pio/build/mega/firmware.hex"
-chip = "avr8"
+firmware = '.pio/build/mega/firmware.hex'
+elf = '.pio/build/mega/firmware.elf'
+
+[serial]
+port = 8888

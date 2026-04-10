@@ -3,7 +3,7 @@
 
 // DHT11 digital temperature and humidity sensor driver
 
-#define DHT11_PIN  18   // Digital I/O pin connected to DHT11 DATA line
+#define DHT11_PIN  17   // Digital I/O pin connected to DHT11 DATA line
 
 void ddDht11Setup();
 
