@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "Lab 5.1 - ON-OFF Temperature Control (DHT22 + Relay)",
+  "author": "Lab 5.1 - ON-OFF Temp Control (DHT11 + Relay heater + L298N fan)",
   "editor": "wokwi",
   "parts": [
     { "type": "wokwi-arduino-mega", "id": "mega", "top": 300, "left": 0, "attrs": {} },
@@ -26,19 +26,33 @@
       "attrs": {}
     },
     {
-      "type": "wokwi-led",
-      "id": "led1",
-      "top": 50,
-      "left": 700,
-      "attrs": { "color": "red", "label": "Load" }
-    },
-    {
       "type": "wokwi-resistor",
       "id": "r1",
       "top": 145,
       "left": 695,
       "rotate": 90,
-      "attrs": { "value": "220" }
+      "attrs": { "value": "220", "label": "Heater" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led1",
+      "top": 50,
+      "left": 700,
+      "attrs": { "color": "red", "label": "Heater" }
+    },
+    {
+      "type": "wokwi-l298n",
+      "id": "l298n1",
+      "top": 50,
+      "left": 850,
+      "attrs": {}
+    },
+    {
+      "type": "wokwi-dc-motor",
+      "id": "fan1",
+      "top": 50,
+      "left": 1100,
+      "attrs": { "label": "Fan" }
     }
   ],
   "connections": [
@@ -47,18 +61,26 @@
     [ "lcd1:SDA", "mega:20",    "blue",   [ "h-30", "v180", "h660" ] ],
     [ "lcd1:SCL", "mega:21",    "purple", [ "h-20", "v160", "h650" ] ],
 
-    [ "dht1:VCC", "mega:5V",    "red",    [ "v-20", "h-380" ] ],
-    [ "dht1:GND", "mega:GND.2", "black",  [ "v10",  "h-390" ] ],
-    [ "dht1:SDA", "mega:18",    "green",  [ "v-10", "h-370" ] ],
+    [ "dht1:VCC", "mega:5V",    "red",   [ "v-20", "h-380" ] ],
+    [ "dht1:GND", "mega:GND.2", "black", [ "v10",  "h-390" ] ],
+    [ "dht1:SDA", "mega:17",    "green", [ "v-10", "h-370" ] ],
 
     [ "mega:7",     "relay1:IN",  "orange", [] ],
     [ "relay1:VCC", "mega:5V",    "red",    [] ],
     [ "relay1:GND", "mega:GND.3", "black",  [] ],
+    [ "mega:5V",    "relay1:COM", "red",    [] ],
+    [ "relay1:NO",  "r1:1",       "red",    [] ],
+    [ "r1:2",       "led1:A",     "red",    [] ],
+    [ "led1:C",     "mega:GND.4", "black",  [] ],
 
-    [ "mega:5V",   "relay1:COM", "red",   [] ],
-    [ "relay1:NO", "r1:1",       "red",   [] ],
-    [ "r1:2",      "led1:A",     "red",   [] ],
-    [ "led1:C",    "mega:GND.4", "black", [] ]
+    [ "mega:6",    "l298n1:ENA", "yellow", [] ],
+    [ "mega:4",    "l298n1:IN1", "green",  [] ],
+    [ "mega:5",    "l298n1:IN2", "blue",   [] ],
+    [ "mega:5V",   "l298n1:5V",  "red",    [] ],
+    [ "mega:GND.5","l298n1:GND", "black",  [] ],
+    [ "mega:5V",   "l298n1:12V", "red",    [] ],
+    [ "l298n1:MOTOR_A", "fan1:+", "orange", [] ],
+    [ "l298n1:MOTOR_B", "fan1:-", "orange", [] ]
   ],
   "dependencies": {}
 }
