@@ -10,6 +10,7 @@
 #include "lab_4_2/lab_4_2_app.h"
 #include "lab_5_1/lab_5_1_app.h"
 #include "lab_5_2/lab_5_2_app.h"
+#include "lab_6_1/lab_6_1_app.h"
 
 #define LAB_1_1 11
 #define LAB_1_2 12
@@ -21,8 +22,9 @@
 #define LAB_4_2 42
 #define LAB_5_1 51
 #define LAB_5_2 52
+#define LAB_6_1 61
 
-#define APP_NAME LAB_5_2
+#define APP_NAME LAB_5_1
 
 
 void setup() {
@@ -46,6 +48,8 @@ void setup() {
         lab5_1Setup();
     #elif APP_NAME == LAB_5_2
         lab5_2Setup();
+    #elif APP_NAME == LAB_6_1
+        lab6_1Setup();
     #endif
 }
 
@@ -70,5 +74,7 @@ void loop() {
         lab5_1Loop();
     #elif APP_NAME == LAB_5_2
         lab5_2Loop();
+    #elif APP_NAME == LAB_6_1
+        lab6_1Loop();
     #endif
 }

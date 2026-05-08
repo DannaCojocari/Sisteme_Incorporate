@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "author": "Lab 5.2 – PID Temperature Control (Wokwi)",
+  "author": "Lab 6.1 – FSM Button-LED (Moore)",
   "editor": "wokwi",
   "parts": [
     {
@@ -11,59 +11,45 @@
       "attrs": {}
     },
     {
-      "type": "wokwi-dht22",
-      "id": "dht1",
-      "top": 0,
+      "type": "wokwi-pushbutton",
+      "id": "btn1",
+      "top": 20,
       "left": 40,
-      "attrs": { "temperature": "22", "humidity": "50" }
+      "attrs": { "color": "green" }
+    },
+    {
+      "type": "wokwi-led",
+      "id": "led_green",
+      "top": 20,
+      "left": 220,
+      "attrs": { "color": "green", "label": "FSM LED" }
+    },
+    {
+      "type": "wokwi-resistor",
+      "id": "r_led",
+      "top": 80,
+      "left": 220,
+      "attrs": { "value": "220" }
     },
     {
       "type": "wokwi-lcd1602",
       "id": "lcd1",
-      "top": 0,
-      "left": 200,
+      "top": 20,
+      "left": 380,
       "attrs": { "pins": "i2c", "address": "0x27" }
-    },
-    {
-      "type": "wokwi-dc-motor",
-      "id": "motor1",
-      "top": 0,
-      "left": 530,
-      "attrs": { "label": "FAN (racire)" }
-    },
-    {
-      "type": "wokwi-led",
-      "id": "led_heater",
-      "top": 130,
-      "left": 530,
-      "attrs": { "color": "red", "label": "HEATER" }
-    },
-    {
-      "type": "wokwi-resistor",
-      "id": "r1",
-      "top": 170,
-      "left": 490,
-      "attrs": { "value": "220" }
     }
   ],
   "connections": [
-    ["mega:GND.1",    "mega:GND.2",     "black",  []],
+    ["btn1:1.l", "mega:2",     "green", []],
+    ["btn1:2.l", "mega:GND.1", "black", []],
 
-    ["dht1:VCC",      "mega:5V",        "red",    ["h-10","v60","h-30"]],
-    ["dht1:SDA",      "mega:17",        "green",  ["v10","h-20"]],
-    ["dht1:GND",      "mega:GND.1",     "black",  ["v20","h-50"]],
+    ["mega:13",      "r_led:1",     "green", []],
+    ["r_led:2",      "led_green:A", "green", []],
+    ["led_green:C",  "mega:GND.1",  "black", []],
 
-    ["mega:20",       "lcd1:SDA",       "green",  []],
-    ["mega:21",       "lcd1:SCL",       "blue",   []],
-    ["mega:5V",       "lcd1:VCC",       "red",    []],
-    ["mega:GND.1",    "lcd1:GND",       "black",  []],
-
-    ["mega:6",        "motor1:A+",      "orange", []],
-    ["mega:4",        "motor1:A-",      "yellow", []],
-    ["mega:5",        "mega:GND.2",     "black",  []],
-
-    ["mega:7",        "r1:1",           "red",    []],
-    ["r1:2",          "led_heater:A",   "red",    []],
-    ["led_heater:C",  "mega:GND.1",     "black",  []]
+    ["mega:20",   "lcd1:SDA", "green", []],
+    ["mega:21",   "lcd1:SCL", "blue",  []],
+    ["mega:5V",   "lcd1:VCC", "red",   []],
+    ["mega:GND.1","lcd1:GND", "black", []]
   ]
 }
